@@ -1,0 +1,17 @@
+# Verified Windows / Python 3.11 environment from the successful installation log.
+numpy==2.4.6
+pandas==3.0.5
+scipy==1.17.1
+scikit-learn==1.9.0
+joblib==1.5.3
+matplotlib==3.11.1
+seaborn==0.13.2
+xgboost==3.2.0
+torch==2.13.0
+pennylane==0.45.1
+qiskit==2.5.2
+qiskit-machine-learning==0.9.1
+jupyterlab==4.6.3
+nbformat==5.11.1
+pytest==9.1.1
+dill==0.4.1
