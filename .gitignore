@@ -1,0 +1,52 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+QUANTUM/
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Raw datasets (not redistributed)
+datasets/
+*.pcap
+*.pcapng
+
+# Large model/checkpoint artifacts
+*.pt
+*.pth
+*.ckpt
+*.joblib
+
+# Generated archives and temporary files
+*.zip
+*.log
+*.tmp
+*.bak
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+
+# Local generated result caches
+results/**/seed_*/
+results/**/checkpoints/
+
+# Keep small publication summary tables explicitly tracked when added
+!results/publication/
+!results/publication/**
