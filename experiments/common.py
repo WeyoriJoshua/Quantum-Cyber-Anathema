@@ -40,6 +40,7 @@ def load_quantum_splits(path: str | Path):
         missing = sorted(required.difference(data.files))
         if missing:
             raise KeyError(f"Missing arrays in {path}: {missing}")
+
         result = {key: np.asarray(data[key]) for key in required}
 
     for split in ("train", "val", "test"):
@@ -63,6 +64,7 @@ def load_quantum_splits(path: str | Path):
     }
     if len(n_features) != 1:
         raise ValueError("Train/validation/test feature dimensions do not match.")
+
     return result
 
 
@@ -106,6 +108,7 @@ def stratified_subsample_arrays(X, y, n: int | None, *, seed: int = 42):
     return X[idx], y[idx]
 
 
+
 def create_matched_benchmark_splits(
     data: dict,
     *,
@@ -114,7 +117,11 @@ def create_matched_benchmark_splits(
     test_size: int = 200,
     seed: int = 42,
 ):
-    """Create one reproducible class-proportional benchmark for every model."""
+    """Create one reproducible class-proportional benchmark for every model.
+
+    Each subset is sampled strictly *within* its already separated partition;
+    therefore this function cannot move observations across train/validation/test.
+    """
     X_train, y_train = stratified_subsample_arrays(
         data["X_train"], data["y_train"], train_size, seed=seed
     )
@@ -135,6 +142,7 @@ def create_matched_benchmark_splits(
 
 
 def save_quantum_splits(data: dict, path: str | Path):
+    """Persist a validated split dictionary as a compressed NumPy archive."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(
@@ -152,7 +160,10 @@ def save_quantum_splits(data: dict, path: str | Path):
 def save_json(obj, path: str | Path):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, indent=2, default=float), encoding="utf-8")
+    path.write_text(
+        json.dumps(obj, indent=2, default=float),
+        encoding="utf-8",
+    )
 
 
 def save_metrics_table(rows: list[dict], path: str | Path):
