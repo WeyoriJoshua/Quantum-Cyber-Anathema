@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "Quantum Cyber Anathema (QCA)"
+type: software
+authors:
+  - family-names: "Weyori"
+    given-names: "Joshua Akowuje"
+  - family-names: "Nimbe"
+    given-names: "Peter"
+repository-code: "https://github.com/WeyoriJoshua/Quantum-Cyber-Anathema"
+license: "MIT"
+abstract: >-
+  Reproducible implementation of Quantum Cyber Anathema, a reflexive
+  quantum-classical learning framework for network intrusion detection with
+  multi-seed evaluation and cross-dataset external validation.
+keywords:
+  - cyber anathema
+  - quantum machine learning
+  - intrusion detection
+  - reflexive learning
+  - cybersecurity
+  - variational quantum classifier
+  - external validation
