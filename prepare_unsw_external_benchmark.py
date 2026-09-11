@@ -89,8 +89,10 @@ def _feature_columns(df: pd.DataFrame) -> list[str]:
 
 
 def _clean_split(df: pd.DataFrame, *, split: str) -> tuple[pd.DataFrame, dict]:
+    """Remove contradictory and duplicate exact feature rows within one official split."""
     df = df.copy()
     feature_cols = _feature_columns(df)
+
     numeric_cols = df[feature_cols].select_dtypes(include=[np.number]).columns
     if len(numeric_cols):
         df[numeric_cols] = df[numeric_cols].replace([np.inf, -np.inf], np.nan)
@@ -130,6 +132,7 @@ def _remove_cross_split_overlap(train_df: pd.DataFrame, test_df: pd.DataFrame):
 
     train_hashes = pd.util.hash_pandas_object(train_df[feature_cols], index=False).astype("uint64")
     test_hashes = pd.util.hash_pandas_object(test_df[feature_cols], index=False).astype("uint64")
+
     train_set = set(train_hashes.tolist())
     overlap_mask = test_hashes.isin(train_set)
     removed = int(overlap_mask.sum())
@@ -156,9 +159,7 @@ def _assert_disjoint_feature_rows(named_frames: dict[str, pd.DataFrame]):
     hashes = {}
     for name, df in named_frames.items():
         feature_cols = _feature_columns(df)
-        hashes[name] = set(
-            pd.util.hash_pandas_object(df[feature_cols], index=False).astype("uint64").tolist()
-        )
+        hashes[name] = set(pd.util.hash_pandas_object(df[feature_cols], index=False).astype("uint64").tolist())
     names = list(hashes)
     for i in range(len(names)):
         for j in range(i + 1, len(names)):
@@ -195,9 +196,7 @@ def main():
         test_size=int(args.val_size),
         random_state=int(args.seed),
     )
-    train_idx, val_idx = next(
-        splitter.split(np.zeros((len(dev_pool), 1)), dev_pool[TARGET_COLUMN].to_numpy())
-    )
+    train_idx, val_idx = next(splitter.split(np.zeros((len(dev_pool), 1)), dev_pool[TARGET_COLUMN].to_numpy()))
     benchmark_train = dev_pool.iloc[train_idx].reset_index(drop=True)
     benchmark_val = dev_pool.iloc[val_idx].reset_index(drop=True)
 
