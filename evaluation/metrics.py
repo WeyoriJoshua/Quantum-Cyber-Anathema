@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from typing import Any
 
 import numpy as np
@@ -105,7 +106,12 @@ def select_threshold(
     maximum: float = 0.95,
     steps: int = 181,
 ):
-    """Select a classification threshold from validation data only."""
+    """Select a classification threshold from validation data only.
+
+    `metric` can be ``mcc`` or ``f1``. Ties are resolved toward 0.5 so the
+    procedure does not prefer unnecessarily extreme thresholds.
+    Returns ``(threshold, best_score, search_table)``.
+    """
     import pandas as pd
 
     y_true = np.asarray(y_true).astype(int).reshape(-1)
