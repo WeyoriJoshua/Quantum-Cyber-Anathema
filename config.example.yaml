@@ -1,0 +1,30 @@
+project:
+  seed: 42
+  experiment_tag: CICIDS2017_debug
+
+dataset:
+  name: CICIDS2017
+  path: datasets/CIC-IDS-2017/CSV/MachineLearningCSV/MachineLearningCVE
+  label_column: null
+  max_rows: 2000
+
+split:
+  train_size: 0.60
+  validation_size: 0.20
+  test_size: 0.20
+
+quantum_preprocessing:
+  qubits: 4
+  angle_range: [0.0, 3.141592653589793]
+  fit_on_training_only: true
+  remove_exact_duplicate_pairs_before_split: true
+  remove_conflicting_feature_labels_before_split: true
+
+qca:
+  layers: 2
+  warmup_epochs: 10
+  cycles: 3
+  epochs_per_cycle: 5
+  batch_size: 16
+  replay_ratio: 0.20
+  memory_capacity: 500

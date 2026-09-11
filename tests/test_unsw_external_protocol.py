@@ -1,13 +1,15 @@
 import json
 
 import numpy as np
+import pytest
 
 from project_config import CONFIG
 
 
 def test_unsw_benchmark_shapes_and_classes():
     path = CONFIG.unsw_benchmark_splits_path
-    assert path.exists()
+    if not path.exists():
+        pytest.skip("Prepared UNSW benchmark artifact is not distributed; run prepare_unsw_external_benchmark.py first.")
     with np.load(path, allow_pickle=False) as d:
         assert d["X_train"].shape == (1000, 4)
         assert d["X_val"].shape == (300, 4)
@@ -18,6 +20,8 @@ def test_unsw_benchmark_shapes_and_classes():
 
 def test_unsw_preprocessing_guards():
     path = CONFIG.unsw_preprocessed_dir / "preprocessing_report.json"
+    if not path.exists():
+        pytest.skip("UNSW preprocessing report is not distributed; run prepare_unsw_external_benchmark.py first.")
     report = json.loads(path.read_text(encoding="utf-8"))
     guards = report["methodological_guards"]
     assert guards["official_test_never_used_for_training_or_validation"] is True
