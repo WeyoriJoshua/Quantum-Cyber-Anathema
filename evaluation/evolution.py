@@ -4,7 +4,14 @@ import numpy as np
 
 
 def composite_defense_score(metrics: dict) -> float:
-    """Primary QCA evolution score from F1, shifted MCC, and PR-AUC."""
+    """
+    Primary QCA evolution score.
+
+    Uses three complementary imbalanced-classification metrics:
+        F1, MCC, PR-AUC
+
+    MCC is shifted from [-1,1] to [0,1] before averaging.
+    """
     f1 = float(metrics["F1"])
     mcc01 = (float(metrics["MCC"]) + 1.0) / 2.0
     prauc = float(metrics["PR-AUC"])
@@ -38,7 +45,12 @@ def empirical_qecr_proxy(
     *,
     epsilon: float = 1e-12,
 ) -> float:
-    """Predictive-entropy reduction proxy; not a thermodynamic claim."""
+    """
+    Empirical information-theoretic proxy for the manuscript's QECR concept.
+
+    It measures reduction in predictive entropy on the same fixed evaluation set.
+    It is *not* a claim of thermodynamic entropy conversion.
+    """
     h0 = float(np.mean(normalized_binary_entropy(baseline_probabilities)))
     ht = float(np.mean(normalized_binary_entropy(current_probabilities)))
     return float((h0 - ht) / (h0 + epsilon))
