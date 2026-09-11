@@ -91,6 +91,7 @@ def clean_dataset(
 
     conflicting_mask = pd.Series(False, index=X_clean.index)
     if candidate_conflict_hashes:
+        candidate_idx = hashes[hashes.isin(candidate_conflict_hashes)].index
         for h in candidate_conflict_hashes:
             idx = hashes[hashes == h].index
             bucket = X_clean.loc[idx]
