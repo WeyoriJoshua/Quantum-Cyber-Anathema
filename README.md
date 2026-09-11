@@ -14,6 +14,13 @@ The associated theory manuscript develops the broader Cyber Anathema Theory. The
 
 > **Important scientific boundary:** the quantum experiments in this repository use local statevector/simulator-based execution. The results are a quantum-machine-learning proof of concept and **must not be interpreted as evidence of quantum computational advantage**.
 
+## Authors
+
+- **Joshua Akowuje Weyori**
+- **Dr Peter Nimbe**
+
+Formal citation metadata are provided in [`CITATION.cff`](CITATION.cff).
+
 ## Experimental stages
 
 The publication workflow is deliberately staged to protect the test sets.
@@ -64,8 +71,8 @@ The repository is designed to reproduce the study rather than to advertise only 
 ├── preprocessing/                  # Leakage audit, cleaning, splitting and quantum pipeline
 ├── evaluation/                     # Metrics, evolution summaries and plotting helpers
 ├── experiments/                    # Shared experiment utilities
-├── notebooks/                      # Reproducible analysis notebooks
 ├── tests/                          # Protocol and preprocessing tests
+├── results/                        # Compact publication result tables only
 ├── project_config.py               # Publication configuration
 ├── run_preprocessing.py
 ├── run_classical_baselines.py
@@ -78,6 +85,8 @@ The repository is designed to reproduce the study rather than to advertise only 
 ├── prepare_unsw_external_benchmark.py
 └── run_unsw_external_validation.py
 ```
+
+The script-based runners are the canonical publication workflow. Exploratory notebooks and raw/generated large artifacts are intentionally not part of the release archive so that reviewers have a single unambiguous implementation path.
 
 ## Environment
 
@@ -121,6 +130,8 @@ datasets/
 
 The UNSW external-validation pipeline excludes target-adjacent annotation fields such as `attack_cat` from the binary prediction features and removes exact feature overlap between the development pool and the external test pool before matched sampling.
 
+See `DATASET_SETUP.md` for dataset placement and protocol notes.
+
 ## Reproduction order
 
 For the final publication workflow:
@@ -162,14 +173,29 @@ python smoke_test.py
 pytest -q
 ```
 
-## Publication and citation
+## Results included in the repository
 
-A formal citation file and archival DOI will be added when the manuscript metadata and public release are finalized. Until then, please cite the repository URL together with the corresponding manuscript title.
+Only compact publication-facing result tables are retained in `results/`. Raw datasets, large checkpoints, intermediate arrays, caches and bulky generated artifacts are excluded.
+
+The retained tables cover:
+
+- CICIDS2017 five-seed summary metrics;
+- paired QCA-vs-Static-VQC comparison;
+- QCA-v2 development-stage variant ranking and paired comparisons;
+- UNSW-NB15 external descriptive ranking and frozen QCA-v2 paired comparisons.
+
+## Citation
+
+If you use this software or reproduce the study, use the citation metadata in [`CITATION.cff`](CITATION.cff). A permanent archival DOI may be added after the first public release is deposited in an archival service such as Zenodo.
+
+## License
+
+This repository is released under the **MIT License**. See [`LICENSE`](LICENSE).
 
 ## Data availability
 
-CICIDS2017 and UNSW-NB15 are third-party benchmark datasets and are not redistributed here. Users should obtain them from their official or otherwise authorized distribution sources and place them in the folder layout described above.
+CICIDS2017 and UNSW-NB15 are third-party benchmark datasets and are not redistributed here. Users should obtain them from official or otherwise authorized distribution sources and place them in the folder layout described above.
 
 ## Status
 
-This repository is currently maintained as the reproducibility archive for the QCA empirical study. The broader Cyber Anathema Theory is a separate conceptual contribution; this codebase should be interpreted as one empirical implementation, not as the entirety of the theory.
+This repository is maintained as the reproducibility archive for the QCA empirical study. The broader Cyber Anathema Theory is a separate conceptual contribution; this codebase should be interpreted as one empirical implementation, not as the entirety of the theory.
