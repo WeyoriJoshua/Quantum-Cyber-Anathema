@@ -1,0 +1,11 @@
+dataset,comparator,delta_mcc_hqca_minus_comparator,bootstrap_ci95_low,bootstrap_ci95_high,hqca_correct_comparator_wrong,hqca_wrong_comparator_correct,exact_mcnemar_p
+UNSW-NB15,Classical CAT,-0.0239029,-0.0372513,-0.0110011,57,111,3.75384e-05
+UNSW-NB15,Quantum CAT,0.0998913,0.0832634,0.1180805,235,38,7.548821e-36
+UNSW-NB15,Static Weighted Hybrid,-0.0280075,-0.0404221,-0.0163146,39,106,2.403002e-08
+CIC-IDS-2017,Classical CAT,0.0,0.0,0.0,0,0,1.0
+CIC-IDS-2017,Quantum CAT,0.1638539,0.1313869,0.1966119,106,6,9.756787e-25
+CIC-IDS-2017,Static Weighted Hybrid,0.0,0.0,0.0,0,0,1.0
+ToN-IoT,Classical CAT,-0.0009891,-0.0030368,0.0,0,1,1.0
+ToN-IoT,Quantum CAT,0.0948111,0.0757298,0.1150593,98,7,1.206543e-21
+ToN-IoT,Static Weighted Hybrid,-0.001,-0.0030302,0.0,0,1,1.0
+ToN-IoT,Generic RF Stacking,-0.0019403,-0.0070566,0.0031062,2,4,0.6875
