@@ -1,0 +1,40 @@
+{
+  "experiment": "CICIDS2017 zero-day complementarity-shift validation",
+  "status": "Pre-specified 10-seed source/attack-family holdout protocol. CICIDS2017 was used previously in the broader project, but these locked zero-day source-holdout conditions were not used to develop the router.",
+  "locked_conditions": {
+    "PortScan": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv",
+    "Infiltration": "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv",
+    "Web Attack": "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv"
+  },
+  "seeds": [2026,2027,2028,2029,2030,2031,2032,2033,2034,2035],
+  "per_source_dev_cap": 3000,
+  "max_dev_rows": 12000,
+  "max_test_attacks": 3000,
+  "max_test_benign": 3000,
+  "oof_folds": 3,
+  "meta_folds": 5,
+  "n_qubits": 4,
+  "quantum_layers": 2,
+  "quantum_epochs": 10,
+  "quantum_batch_size": 64,
+  "fpr_targets": [0.001,0.005,0.01],
+  "torch_version": "2.14.0+cu126",
+  "cuda_build": "12.6",
+  "cuda_available": true,
+  "gpu_name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+  "pennylane_version": "0.45.1",
+  "quantum_backend": "torch.cuda.custom_statevector",
+  "heldout_source_is_excluded_from_development": true,
+  "heldout_attack_family_removed_from_all_development_sources": true,
+  "source_file_used_as_predictor": false,
+  "attack_family_used_as_predictor": false,
+  "label_used_as_predictor": false,
+  "primary_hypothesis": "Classical–Quantum complementarity is attack/distribution dependent; the rate at which Quantum CAT rescues Classical CAT errors can shift materially from known development traffic to zero-day attack traffic.",
+  "guardrails": [
+    "Report all 3 conditions and all 10 seeds.",
+    "Do not select only attack families showing increased quantum complementarity.",
+    "Do not claim quantum advantage from simulator results.",
+    "Do not claim Adaptive HQCA superiority unless supported consistently by effect size and paired tests.",
+    "Treat complementarity shift as attack-dependent if direction differs by held-out family."
+  ]
+}
