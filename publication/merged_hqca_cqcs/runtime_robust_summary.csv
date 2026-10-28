@@ -1,0 +1,4 @@
+condition,total_seconds_median,total_seconds_q1,total_seconds_q3,classical_fit_median,classical_fit_q1,classical_fit_q3,quantum_fit_median,quantum_fit_q1,quantum_fit_q3
+PortScan,443.14,441.18,446.11,26.29,25.43,26.7,38.5,37.43,38.91
+Infiltration,485.94,481.75,496.61,28.03,26.86,28.18,46.18,45.25,47.41
+Web Attack,480.07,471.42,482.29,26.38,26.28,27.05,45.25,41.19,45.77
