@@ -1,0 +1,4 @@
+heldout_family,n_seeds,seeds_shift_gt_1,seeds_shift_eq_1,seeds_shift_lt_1,median_shift_ratio
+PortScan,10,0,0,10,0.016182452643448104
+Infiltration,10,1,0,9,0.035019062117071065
+Web Attack,10,10,0,0,2.10332318025617
