@@ -1,0 +1,29 @@
+# Merged HQCA–CQCS publication package
+
+This directory contains the reproducibility and manuscript materials for:
+
+**Cyber Anathema: Nonstationary Classical–Quantum Complementarity in Adaptive Intrusion Detection under Zero-Day Distribution Shift**
+
+## Contents
+
+- `HQCA_CICIDS2017_ZeroDay_ComplementarityShift_10Seed_GPU.ipynb` — native-Windows/CUDA zero-day validation notebook.
+- `ZERO_DAY_EXPERIMENT_README.md` — execution notes.
+- `comparative_statistics_standard_prospective.csv` — paired bootstrap/McNemar summary for standard and prospective tests.
+- `multiseed_zero_day_model_summary.csv` — zero-day model summary across ten seeds.
+- `multiseed_complementarity_shift_summary.csv` — CQCS summary.
+- `multiseed_controlled_fpr_summary.csv` — controlled-FPR transfer summary.
+- `paired_10seed_model_tests.csv` — paired repeated-seed tests.
+- `complementarity_shift_direction_stability.csv` — seed-wise CQCS direction stability.
+- `runtime_robust_summary.csv` — median/IQR computational-cost summary.
+- `zero_day_split_audit.csv` and `locked_zero_day_sources.csv` — data/source audit.
+- `run_manifest.json` — locked zero-day configuration.
+- `AUTHORS_AND_CONTRIBUTIONS.md` — authors, affiliations, contact emails, and draft CRediT roles.
+- `REVIEWER_AUDIT.md` — reviewer audit and revision record.
+
+The `all_seed_*.csv` files are also included to support independent recomputation of summaries.
+
+## Scope and interpretation
+
+The repository does not redistribute UNSW-NB15, CIC-IDS-2017, or ToN-IoT. Obtain them from their official providers.
+
+The paper does **not** claim hardware quantum advantage. The central result is that the relative usefulness of Classical and Quantum branches can change after distribution shift, making a fusion policy learned on development traffic stale. CQCS quantifies that development-to-target change.
