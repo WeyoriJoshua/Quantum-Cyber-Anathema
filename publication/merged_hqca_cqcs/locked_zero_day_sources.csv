@@ -1,0 +1,4 @@
+heldout_family,heldout_source
+PortScan,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv
+Infiltration,Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv
+Web Attack,Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv
