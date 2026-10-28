@@ -1,0 +1,7 @@
+heldout_family,split,source_rule,rows,benign,attack
+PortScan,development,all non-heldout source CSVs,11824,10226,1598
+PortScan,zero_day_test,Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv,5917,2974,2943
+Infiltration,development,all non-heldout source CSVs,11815,9274,2541
+Infiltration,zero_day_test,Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv,3002,2966,36
+Web Attack,development,all non-heldout source CSVs,11828,9309,2519
+Web Attack,zero_day_test,Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv,5134,2991,2143
