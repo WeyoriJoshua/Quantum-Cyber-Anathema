@@ -1,92 +1,90 @@
-# Quantum Cyber Anathema (QCA)
+# Quantum Cyber Anathema / Adaptive HQCA–CQCS
 
-Reproducible research implementation of **Quantum Cyber Anathema**, a quantum-classical empirical instantiation of the broader **Cyber Anathema Theory (CAT)** research programme.
+Reproducible research implementation of the **Cyber Anathema** programme, with the current empirical manuscript focused on adaptive hybrid quantum–classical intrusion detection, zero-day distribution shift, and nonstationary branch complementarity.
 
-The core empirical question is whether hostile observations can be converted into useful defensive training signals through reflexive weighting, adversarial memory, boundary-focused replay, and recursive model updating—without assuming that adaptation automatically implies generalization or quantum advantage.
+## Current manuscript
 
-## Scientific scope
+**Cyber Anathema: Nonstationary Classical–Quantum Complementarity in Adaptive Intrusion Detection under Zero-Day Distribution Shift**
 
-This repository supports the empirical manuscript:
+The manuscript combines:
 
-**Quantum Cyber Anathema: Reflexive Quantum–Classical Learning for Network Intrusion Detection with Multi-Seed Evaluation and Cross-Dataset External Validation**
+- leakage-safe Classical CAT, Quantum CAT, Static Hybrid, Generic Stacking, and Adaptive HQCA;
+- standard evaluation on UNSW-NB15 and CIC-IDS-2017;
+- prospective validation on ToN-IoT;
+- attack-family/source-held-out zero-day evaluation;
+- Classical–Quantum Complementarity Shift (CQCS);
+- calibration and threshold-transfer analysis;
+- controlled-FPR evaluation;
+- paired bootstrap, exact McNemar, Friedman, Wilcoxon/Holm, and effect-size analyses.
 
-The associated theory manuscript develops the broader Cyber Anathema Theory. The theory paper and this empirical implementation are related but distinct: CAT is substrate-neutral, whereas this repository evaluates a specific quantum-classical intrusion-detection implementation.
-
-> **Important scientific boundary:** the quantum experiments in this repository use local statevector/simulator-based execution. The results are a quantum-machine-learning proof of concept and **must not be interpreted as evidence of quantum computational advantage**.
+> **Scientific boundary:** the quantum experiments use simulator/state-vector execution. The project does **not** claim hardware or computational quantum advantage, universal Quantum > Classical performance, or universal Hybrid > Classical superiority.
 
 ## Authors
 
-- **Joshua Akowuje Weyori**
-- **Dr Peter Nimbe**
+- **Joshua Akowuje Weyori** — first and corresponding author
+- Jonathan Nkrumah
+- Richmond Ansah-Sarpong
+- Ayerko Emmanuel Herson
+- Isaac Baiden
+- Bashiru Ibrahim Tare
+- Yuonakuu Solomon Naabaseru
+- Saeed Sulley Junior
+- Courage Kwesi Ayidzoe
+- George Owusu Aduenin
+- William Joe Baasie
 
-Formal citation metadata are provided in [`CITATION.cff`](CITATION.cff).
+See `publication/merged_hqca_cqcs/AUTHORS_AND_CONTRIBUTIONS.md` for affiliations, contact emails, and the draft CRediT statement.
 
-## Experimental stages
+## Main scientific finding
 
-The publication workflow is deliberately staged to protect the test sets.
+The strongest result is **not** that a hybrid or quantum classifier universally wins.
 
-1. **CICIDS2017 matched benchmark** — leakage-controlled preprocessing and architecture-matched classical/quantum controls.
-2. **Five-seed evaluation** — fixed seeds `42, 123, 2026, 7, 99` on the same benchmark partition.
-3. **QCA-v2 development** — validation-only mechanism development; the previously inspected CICIDS2017 test set is not accessed.
-4. **Frozen external validation** — the selected QCA-v2 mechanism is frozen before evaluation on UNSW-NB15.
-
-The frozen QCA-v2 configuration is:
+Across ordinary reference/prospective tests, strong Classical and generic fusion baselines are difficult to improve. Under source/attack-family distribution shift, however, the relationship between the Classical and Quantum branches can change sharply. The manuscript formalizes this with:
 
 ```text
-Variant: QCA_MarginHardReplay
-Qubits: 4
-Circuit layers: 2
-Learning rate: 0.01
-Batch size: 16
-Uncertainty beta: 0.10
-Margin lambda: 0.50
-Probability margin: 0.15
-Replay mode: boundary
-Boundary weight: 1.00
-Boundary threshold: 0.50
-Memory capacity: 600
-Replay ratio: 0.20
-Warm-up epochs: 20
-Cycles: 4
-Epochs per cycle: 10
-Maximum training budget: 60 epochs
-Seeds: 42, 123, 2026, 7, 99
+Gamma_Q(D) = P(Quantum correct | Classical wrong, D)
+
+CQCS_Q(D_reference -> D_target)
+  = Gamma_Q(D_target) / Gamma_Q(D_reference)
 ```
 
-## Main findings represented by this codebase
+Held-out Web Attack shows a large expansion of conditional quantum rescue, while PortScan shows the opposite contraction. The key implication is that a fusion policy learned on development traffic can become stale after distribution shift.
 
-The repository is designed to reproduce the study rather than to advertise only positive results.
+## Publication package
 
-- Classical tree ensembles were the strongest predictive baselines in the matched experiments.
-- QCA-v2 showed a development-stage improvement over a matched Static VQC on CICIDS2017 validation data.
-- That ranking advantage did **not** replicate on the independent UNSW-NB15 external benchmark.
-- The study therefore does **not** claim quantum predictive superiority.
+The reviewer-facing reproducibility material is under:
+
+`publication/merged_hqca_cqcs/`
+
+It includes:
+
+- the zero-day GPU notebook and execution notes;
+- paired standard/prospective statistical comparisons;
+- 10-seed zero-day model summaries;
+- CQCS summaries;
+- controlled-FPR results;
+- paired statistical tests;
+- split/source audits;
+- runtime robust summaries;
+- authorship/contribution metadata; and
+- a pre-submission reviewer audit.
 
 ## Repository structure
 
 ```text
 .
-├── models/                         # Classical, PennyLane and Qiskit model definitions
-├── qca/                            # QCA-v1 and QCA-v2 loss, memory and training logic
-├── preprocessing/                  # Leakage audit, cleaning, splitting and quantum pipeline
-├── evaluation/                     # Metrics, evolution summaries and plotting helpers
-├── experiments/                    # Shared experiment utilities
-├── tests/                          # Protocol and preprocessing tests
-├── results/                        # Compact publication result tables only
-├── project_config.py               # Publication configuration
-├── run_preprocessing.py
-├── run_classical_baselines.py
-├── run_pennylane_vqc.py
-├── run_qiskit_baselines.py
-├── run_qca.py
-├── run_qca_ablation.py
-├── run_multiseed_benchmark.py
-├── run_qca_v2_development.py
-├── prepare_unsw_external_benchmark.py
-└── run_unsw_external_validation.py
+├── models/
+├── qca/
+├── preprocessing/
+├── evaluation/
+├── experiments/
+├── tests/
+├── results/
+├── publication/
+│   └── merged_hqca_cqcs/
+├── project_config.py
+└── ...
 ```
-
-The script-based runners are the canonical publication workflow. Exploratory notebooks and raw/generated large artifacts are intentionally not part of the release archive so that reviewers have a single unambiguous implementation path.
 
 ## Environment
 
@@ -99,103 +97,41 @@ python -m pip install --upgrade pip setuptools wheel
 pip install -r requirements-verified.txt
 ```
 
-The verified publication environment includes PennyLane, Qiskit, Qiskit Machine Learning, scikit-learn, XGBoost and PyTorch. See `requirements-verified.txt`.
+The later GPU validation experiments were executed on native Windows with PyTorch/CUDA and an NVIDIA RTX 3060 Laptop GPU. The custom four-qubit CUDA state-vector implementation was checked against a PennyLane CPU reference before use.
 
 ## Datasets
 
-Raw datasets are intentionally **not** stored in this repository.
+Raw benchmark datasets are intentionally **not** redistributed.
 
-### CICIDS2017
+The project uses:
 
-Place the official MachineLearningCVE CSV files under:
+- UNSW-NB15
+- CIC-IDS-2017
+- ToN-IoT
 
-```text
-datasets/
-└── CIC-IDS-2017/
-    └── CSV/
-        └── MachineLearningCSV/
-            └── MachineLearningCVE/
-```
-
-### UNSW-NB15
-
-Place the official train/test CSV files under:
-
-```text
-datasets/
-└── UNSW-NB15/
-    ├── UNSW_NB15_training-set.csv
-    └── UNSW_NB15_testing-set.csv
-```
-
-The UNSW external-validation pipeline excludes target-adjacent annotation fields such as `attack_cat` from the binary prediction features and removes exact feature overlap between the development pool and the external test pool before matched sampling.
-
-See `DATASET_SETUP.md` for dataset placement and protocol notes.
-
-## Reproduction order
-
-For the final publication workflow:
-
-```powershell
-python run_preprocessing.py
-python run_classical_baselines.py
-python run_pennylane_vqc.py
-python run_qiskit_baselines.py
-python run_qca.py
-python run_qca_ablation.py
-python run_multiseed_benchmark.py --suite core
-python run_qca_v2_development.py
-python prepare_unsw_external_benchmark.py
-python run_unsw_external_validation.py
-```
-
-See `EXECUTION_ORDER.md`, `MULTISEED_EXPERIMENT_GUIDE.md`, `QCA_V2_DEVELOPMENT_GUIDE.md`, and `UNSW_EXTERNAL_VALIDATION_GUIDE.md` for stage-specific details.
+Obtain them from their official academic providers and place them according to `DATASET_SETUP.md`.
 
 ## Reproducibility safeguards
 
-The code implements the following controls:
+The current merged-paper workflow includes:
 
-- canonical binary labels (`0 = benign`, `1 = attack`);
-- train-only fitting of imputation, scaling, encoding, PCA, and angle transformation;
-- duplicate and contradictory-label controls before splitting;
-- matched observations across headline model comparisons;
-- validation-only threshold/model selection;
-- fixed multi-seed protocol;
-- architecture-matched Static VQC control;
-- explicit QCA component ablations;
-- frozen QCA-v2 configuration before external validation;
-- external test data excluded from tuning.
-
-## Testing
-
-```powershell
-python smoke_test.py
-pytest -q
-```
-
-## Results included in the repository
-
-Only compact publication-facing result tables are retained in `results/`. Raw datasets, large checkpoints, intermediate arrays, caches and bulky generated artifacts are excluded.
-
-The retained tables cover:
-
-- CICIDS2017 five-seed summary metrics;
-- paired QCA-vs-Static-VQC comparison;
-- QCA-v2 development-stage variant ranking and paired comparisons;
-- UNSW-NB15 external descriptive ranking and frozen QCA-v2 paired comparisons.
+- target/proxy leakage controls;
+- preprocessing fitted only on training folds;
+- out-of-fold branch predictions for fusion;
+- development-only threshold selection;
+- strong generic fusion controls;
+- frozen prospective evaluation;
+- pre-specified 10-seed zero-day conditions;
+- prediction-level paired bootstrap and McNemar tests;
+- repeated-seed Friedman/Wilcoxon/Holm analyses;
+- explicit negative-result reporting;
+- simulator/backend equivalence checking; and
+- no post-hoc promotion of test-set ablations to the primary model.
 
 ## Citation
 
-If you use this software or reproduce the study, use the citation metadata in [`CITATION.cff`](CITATION.cff). A permanent archival DOI may be added after the first public release is deposited in an archival service such as Zenodo.
+Use the metadata in `CITATION.cff`. A permanent archival DOI can be added after a tagged release is deposited to an archival service.
 
 ## License
 
-This repository is released under the **MIT License**. See [`LICENSE`](LICENSE).
-
-## Data availability
-
-CICIDS2017 and UNSW-NB15 are third-party benchmark datasets and are not redistributed here. Users should obtain them from official or otherwise authorized distribution sources and place them in the folder layout described above.
-
-## Status
-
-This repository is maintained as the reproducibility archive for the QCA empirical study. The broader Cyber Anathema Theory is a separate conceptual contribution; this codebase should be interpreted as one empirical implementation, not as the entirety of the theory.
+MIT License.
