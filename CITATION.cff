@@ -1,25 +1,60 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it using the metadata below."
-title: "Quantum Cyber Anathema (QCA)"
+message: "If you use this software or reproduce the associated study, please cite it using the metadata below."
+title: "Cyber Anathema: Adaptive HQCA and Classical–Quantum Complementarity Shift"
 type: software
-version: "1.0.0"
-date-released: 2026-09-11
+version: "2.0.0"
+date-released: 2026-10-28
 authors:
   - family-names: "Weyori"
     given-names: "Joshua Akowuje"
-  - family-names: "Nimbe"
-    given-names: "Peter"
+    email: "joshua.weyori@uenr.edu.gh"
+    orcid: "https://orcid.org/0009-0006-1526-6110"
+  - family-names: "Nkrumah"
+    given-names: "Jonathan"
+    email: "jonathan.nkrumah@uenr.edu.gh"
+  - family-names: "Ansah-Sarpong"
+    given-names: "Richmond"
+    email: "richmond.ansah-sarpong@uenr.edu.gh"
+  - family-names: "Herson"
+    given-names: "Ayerko Emmanuel"
+    email: "emmanuel.ayerko@uenr.edu.gh"
+  - family-names: "Baiden"
+    given-names: "Isaac"
+    email: "isbaiden.fx@gmail.com"
+  - family-names: "Tare"
+    given-names: "Bashiru Ibrahim"
+    email: "ibrahim.bashiru.stu@uenr.edu.gh"
+  - family-names: "Naabaseru"
+    given-names: "Yuonakuu Solomon"
+    email: "yuonakuus2@gmail.com"
+  - family-names: "Sulley Junior"
+    given-names: "Saeed"
+    email: "sulley.saeed.stu@uenr.edu.gh"
+  - family-names: "Ayidzoe"
+    given-names: "Courage Kwesi"
+    email: "courageayidzoe@gmail.com"
+  - family-names: "Aduenin"
+    given-names: "George Owusu"
+    email: "nanaaduenin@gmail.com"
+  - family-names: "Baasie"
+    given-names: "William Joe"
+    email: "williambaasie53@gmail.com"
 repository-code: "https://github.com/WeyoriJoshua/Quantum-Cyber-Anathema"
 license: "MIT"
 abstract: >-
-  Reproducible implementation of Quantum Cyber Anathema, a reflexive
-  quantum-classical learning framework for network intrusion detection with
-  multi-seed evaluation and cross-dataset external validation.
+  Reproducible implementation of Cyber Anathema / Adaptive HQCA for
+  classical-quantum intrusion detection, including standard and prospective
+  benchmarks, source/attack-family zero-day validation, Classical–Quantum
+  Complementarity Shift (CQCS), calibration and threshold-transfer analysis,
+  and paired statistical evaluation.
 keywords:
   - cyber anathema
-  - quantum machine learning
+  - hybrid quantum-classical learning
   - intrusion detection
-  - reflexive learning
-  - cybersecurity
-  - variational quantum classifier
-  - external validation
+  - quantum machine learning
+  - zero-day
+  - distribution shift
+  - complementarity shift
+  - calibration
+  - threshold transfer
+  - out-of-fold fusion
